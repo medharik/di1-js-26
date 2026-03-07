@@ -1,0 +1,9 @@
+Wordpress : c'est un cms ( content management system)
+=> application web qui permet de creer des sites web dynamiques (bases de donnees , sauvegarde , connexion,....)
++ avec la possibilite de gerer tout le contenu web (articles,media,pages,...) par differents auteurs 
+les CMS les plus populaires : 
+wordpress (blog,e-commerce,corporate,....)
+joomla 
+drupal 
+prestashop (e-commerce)
+magento ( e-commerce)
