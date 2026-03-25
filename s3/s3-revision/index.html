@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>validation des formulaires en JS</title>
+  </head>
+  <body>
+    <form action="https://www.google.com/" method="get" id="mon_form">
+      <input type="text" name="" id="nom" placeholder="Entrer votre nom" />
+      <div id="erreur"></div>
+      <button type="button" onclick="verifier_nom()">Valider</button>
+    </form>
+    <style>
+      .khalid {
+        border: 2px solid red;
+      }
+    </style>
+  </body>
+  <script>
+    function verifier_nom() {
+      //recuperer l'input
+      let champ_input = document.getElementById("nom");
+      let balise_form = document.getElementById("mon_form");
+      let div_erreur = document.getElementById("erreur");
+
+      // si sa valeur est vide (pas de valeur)
+      if (champ_input.value == "") {
+        // alert("le nom est obligatoire");
+        div_erreur.innerHTML = "le nom est obligatoire";
+        div_erreur.style.color = "red";
+
+        champ_input.className = "e";
+      } else {
+        balise_form.submit();
+      }
+    }
+  </script>
+</html>
