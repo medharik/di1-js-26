@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REVISION JAVASCRIPT DOM</title>
+    <style>
+      .e {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="https://www.google.com/" id="monform">
+      <input type="text" name="" id="nom" placeholder="Entrer votre nom" />
+      <input
+        type="text"
+        name=""
+        id="prenom"
+        placeholder="Entrer votre prenom"
+      />
+      <button type="button" onclick="verifier_tout()">Envoyer</button>
+    </form>
+    <div id="erreur"></div>
+
+    <script>
+      let monform = document.getElementById("monform");
+      let div_erreur = document.getElementById("erreur");
+      // le role de cette fonction (sous programme) , c'est de verifier si le champs  nom est rempli
+      function verifier_nom() {
+        let input_nom = document.getElementById("nom");
+
+        if (input_nom.value == "") {
+          // alert("Nom obligatoire");
+          div_erreur.innerHTML = "Le champs nom est obligatoire";
+          div_erreur.style.color = "red";
+          div_erreur.style.fontSize = "10px";
+          input_nom.className = "e";
+        }
+      }
+      function verifier_prenom() {
+        let input_prenom = document.getElementById("prenom");
+
+        if (input_prenom.value == "") {
+          // alert("Nom obligatoire");
+          div_erreur.innerHTML += "<br>Le champs prenom est obligatoire";
+          div_erreur.style.color = "red";
+
+          div_erreur.style.fontSize = "10px";
+          input_prenom.className = "e";
+        }
+      }
+
+      function verifier_tout() {
+        div_erreur.innerHTML = "";
+        verifier_nom();
+        verifier_prenom();
+        if (div_erreur.innerHTML == "") {
+          monform.submit();
+        }
+      }
+    </script>
+  </body>
+</html>
