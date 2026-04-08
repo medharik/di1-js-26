@@ -4,17 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS REGEX</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <style>
       input {
         margin: 5px 0;
+      }
+      .yes{
+        border: 2px solid green;
+    }
+    .no{
+          border: 2px solid red;
+
+      }
+      input:focus{
+      outline: none;
       }
     </style>
   </head>
   <body>
     <div id="erreur" style="color:red"></div>
     <form action="https://google.com" style="text-align: center">
-      <input type="text" name="" id="nom" placeholder="Entrer le nom" /> <br />
-      <input type="text" name="" id="prenom" placeholder="Entrer le preno," />
+      <input class="form-control" type="text" name="" id="nom" placeholder="Entrer le nom"  onkeyup="testNom()" /> <br />
+      <input type="text" name="" id="prenom" placeholder="Entrer le prenom" />
       <br />
       <input type="text" name="" id="email" placeholder="Entrer le email" />
       <br />
@@ -37,15 +49,30 @@
         let model_nom = /^[a-zA-Z]{2,}$/;
         if (!model_nom.test(nom.value)) {
           message_erreur += "<br>le champs nom n'est pas valide, min 2 caracteres";
+          nom.classList.add("no");
+          nom.classList.remove("yes");
+        }else{
+           nom.classList.add("yes");
+           nom.classList.remove("no");
+
+    //matricule : nombre suivi par : espace ou - ou /  
+    // suivi par une lettre suivi par un nombre  , exemple : 12-A-1234
+    //modele de voiture : min 2 lettres 
+
         }
       }
       function testPrenom() {
         let prenom = document.getElementById("prenom");
-        let model_prenom = /^[a-zA-Z]{2,}$/;
+        let model_prenom = /^([a-zA-Z]{2,}\s*)+$/;
         if (!model_prenom.test(prenom.value)) {
           message_erreur += "<br>le champs prenom n'est pas valide, min 2 caracteres";
+            prenom.classList.add("no");
+        }else{
+            prenom.classList.add("yes");
+
         }
-      }
+    }
+      
       function testTel() {
         let tel = document.getElementById("tel");
         let model_tel = /^((\+|00)\d{3})?0?\d{9}$/;
