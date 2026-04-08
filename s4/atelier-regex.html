@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS REGEX</title>
+    <style>
+      input {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="erreur" style="color:red"></div>
+    <form action="https://google.com" style="text-align: center">
+      <input type="text" name="" id="nom" placeholder="Entrer le nom" /> <br />
+      <input type="text" name="" id="prenom" placeholder="Entrer le preno," />
+      <br />
+      <input type="text" name="" id="email" placeholder="Entrer le email" />
+      <br />
+      <input type="text" name="" id="tel" placeholder="Entrer le tel" /> <br />
+      <input
+        type="text"
+        name=""
+        id="date_de_naissance"
+        placeholder="Entrer le date_de_naissance"
+      />
+      <br />
+
+      <button type="button" onclick="validerForm()">Valider</button>
+    </form>
+
+    <script>
+      let message_erreur = "";
+      function testNom() {
+        let nom = document.getElementById("nom");
+        let model_nom = /^[a-zA-Z]{2,}$/;
+        if (!model_nom.test(nom.value)) {
+          message_erreur += "<br>le champs nom n'est pas valide, min 2 caracteres";
+        }
+      }
+      function testPrenom() {
+        let prenom = document.getElementById("prenom");
+        let model_prenom = /^[a-zA-Z]{2,}$/;
+        if (!model_prenom.test(prenom.value)) {
+          message_erreur += "<br>le champs prenom n'est pas valide, min 2 caracteres";
+        }
+      }
+      function testTel() {
+        let tel = document.getElementById("tel");
+        let model_tel = /^((\+|00)\d{3})?0?\d{9}$/;
+        if (!model_tel.test(tel.value)) {
+          message_erreur += "<br>le champs tel n'est pas valide";
+        }
+      }
+      function testEmail() {
+        let email = document.getElementById("email");
+        //{1,} <=>+
+        //{0,} <=>*
+        //{0,1} <=> ?
+        // \w alphanumerique != \W : tout sauf alphanumerique
+        // . veut dire n'importe quel caractere ( 1 caractere)
+        // \d : digit ([0-9]) != \D 
+        //\s : space != \S
+        // TLD : top level domaine : fr. sn,ma,...
+        let model_email= /^\S+@\S+\.\S{2,3}$/;
+        if (!model_email.test(email.value)) {
+          message_erreur += "<br>le champs email n'est pas valide";
+        }
+      }
+       function testDateNaissance() {
+        let date_de_naissance = document.getElementById("date_de_naissance");
+        let model_date = /^[0-9]{1,2}[\/\- ][0-9]{1,2}[\/\- ][0-9]{4}$/;
+        // jj/mm/aaaa
+        if (!model_date.test(date_de_naissance.value)) {
+          message_erreur += "<br>le champs date de naissance n'est pas valide, min 2 caracteres";
+        }
+      }
+      
+      function validerForm() {
+
+        let erreur=document.getElementById("erreur");
+        let form=document.querySelector("form");
+        testNom();
+        testPrenom();
+        testEmail();
+        testTel();
+        testDateNaissance();
+        if (message_erreur!="") {
+            erreur.innerHTML=message_erreur;
+            message_erreur="";
+        }else {
+            form.submit();
+        }
+
+      }
+    </script>
+  </body>
+</html>

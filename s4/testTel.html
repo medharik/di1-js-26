@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #erreur{
+            color: red;
+            text-align: center  ;
+        }
+        .e{
+            border: 2px solid red ;
+        }
+        .c{
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div id="erreur"></div>
+    <form action="https://google.com" id="f">
+        <input type="text" name="tel" id="tel" placeholder="Entrer le numero de telephone">
+        <input type="text" name="tel" id="cin" placeholder="Entrer le numero de cin">
+        <button type="button" onclick="testerTout()" >Valider</button>
+    </form>
+    <script>
+//variable globale
+        let y=20;
+
+        let div_erreur=document.getElementById('erreur');
+        
+        function testerTel() {
+            //variable locale;
+        let x=10;
+            let tel=document.getElementById("tel");
+            let model_tel=/^0[0-9]{9}$/
+            if (! model_tel.test(tel.value)) {
+                // alert("telephone incorrect")
+                div_erreur.innerHTML +="Telephone incorrect<br>";
+                tel.className="e";
+            }else{
+                tel.className="c";
+            }
+
+            // let a="salut";
+
+            // a =a+" ali";//ou a +=" ali"
+
+            
+            // console.log(a);
+
+        }
+        function testerCin() {
+            let cin=document.getElementById("cin");
+            let model_cin=/^[a-zA-Z]{1,2}[0-9]{4,6}$/
+            if (! model_cin.test(cin.value)) {
+                div_erreur.innerHTML +="Cin incorrect<br>";
+            //   alert(y);
+              cin.className="e";
+            }else{
+                cin.className="c";
+            }
+
+        }
+        function testerTout() {
+            let form=document.getElementById('f');
+            div_erreur.innerHTML="";
+            testerTel();
+            testerCin();
+            if (div_erreur.innerHTML=="") {
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>

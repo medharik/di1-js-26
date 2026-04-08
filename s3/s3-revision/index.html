@@ -8,8 +8,9 @@
   <body>
     <form action="https://www.google.com/" method="get" id="mon_form">
       <input type="text" name="" id="nom" placeholder="Entrer votre nom" />
+      <input type="text" name="" id="prenom" placeholder="Entrer votre prenom" />
       <div id="erreur"></div>
-      <button type="button" onclick="verifier_nom()">Valider</button>
+      <button type="button" onclick="verifier_tout()">Valider</button>
     </form>
     <style>
       .e {
@@ -18,11 +19,24 @@
     </style>
   </body>
   <script>
+
+    let i=10;
+
+    // i+=20;//i=i+20
+    //concatenation ( colle)
+    // let x ="salut";
+    // x+=" ali";
+    // x+=" ali";
+    // console.log(x);
+
+
+    //variable globale
+    let balise_form = document.getElementById("mon_form");
+    let div_erreur = document.getElementById("erreur");
     function verifier_nom() {
-      //recuperer l'input
       let champ_input = document.getElementById("nom");
-      let balise_form = document.getElementById("mon_form");
-      let div_erreur = document.getElementById("erreur");
+      //recuperer l'input
+      //variable locale
 
       // si sa valeur est vide (pas de valeur)
       if (champ_input.value == "") {
@@ -31,9 +45,36 @@
         div_erreur.style.color = "red";
 
         champ_input.className = "e";
-      } else {
+      } 
+    }
+
+
+    function verifier_prenom() {
+      //recuperer l'input
+      let champ_input = document.getElementById("prenom");
+
+      // si sa valeur est vide (pas de valeur)
+      if (champ_input.value == "") {
+        // alert("le nom est obligatoire");
+        div_erreur.innerHTML += "<br>le prenom est obligatoire";
+        div_erreur.style.color = "red";
+
+        champ_input.className = "e";
+      } 
+    }
+
+    function verifier_tout() {
+      //effacer les anciens messages ( vider)
+      div_erreur.innerHTML="";
+
+      verifier_nom();
+      verifier_prenom();
+      
+      if (div_erreur.innerHTML=="") {
         balise_form.submit();
       }
+
     }
+  
   </script>
 </html>
