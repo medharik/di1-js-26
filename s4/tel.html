@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>regex intro</title>
+    <style>
+      input {
+        border: none;
+        border-bottom: 2px solid black;
+      }
+      input:focus {
+        outline: none;
+      }
+      #erreur {
+        color: red;
+      }
+      .e {
+        border: 2px solid red;
+        outline: 4px solid blue;
+      }
+      .success {
+        border: 2px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="https://www.google.com" id="f">
+      Tel : <input onkeyup="testerTel()" type="text" name="" id="tel" /> Passe
+      port : <input onkeyup="testerPp()" type="text" name="" id="pp" />
+      <button type="button" onclick="testerTout()">Valider</button>
+    </form>
+    <div id="erreur"></div>
+
+    <script>
+      let x = "salut ";
+      // console.log(x);
+
+      x += "ali";
+      console.log(x);
+
+      //variable globale ( utilisee dans toutes les fonctions)
+      let div_erreur = document.getElementById("erreur");
+      function testerTel() {
+        //variable local : tel
+        let tel = document.getElementById("tel");
+        let regex_tel = /^0[0-9]{9}$/;
+        if (!regex_tel.test(tel.value)) {
+          div_erreur.innerHTML += "Tel incorrect<br>";
+          tel.className = "e";
+          div_erreur.style.color = "red";
+        } else {
+          tel.className = "success";
+        }
+      }
+      function testerPp() {
+        let pp = document.getElementById("pp");
+        let regex_pp = /^[a-zA-Z]{1,2}[0-9]{4,}$/
+        if (!regex_pp.test(pp.value)) {
+          div_erreur.innerHTML += "PP incorrect<br>";
+          div_erreur.style.color = "red";
+          pp.className = "e";
+        } else {
+          pp.className = "success";
+        }
+      }
+
+      function testerTout() {
+        let f = document.getElementById("f");
+        //vider le div erreur , avant d'appeler les fonctions de test tel et pp
+        div_erreur.innerHTML = "";
+
+        testerTel();
+        testerPp();
+        if (div_erreur.innerHTML == "") {
+          f.submit();
+        }
+      }
+    </script>
+  </body>
+</html>
